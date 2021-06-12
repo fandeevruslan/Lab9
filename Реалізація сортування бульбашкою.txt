@@ -1,0 +1,43 @@
+	using System;
+class Program
+{
+//метод обміну елементів
+static void Swap(ref int e1, ref int e2)
+{
+var temp = e1;
+e1 = e2;
+e2 = temp;
+}
+//сортування бульбашкою
+static int[] BubbleSort(int[] array)
+{
+var len = array.Length;
+for (var i = 1; i &lt; len; i++)
+{
+for (var j = 0; j &lt; len - i; j++)
+{
+if (array[j] &gt; array[j + 1])
+{
+Swap(ref array[j], ref array[j + 1]);
+
+}
+}
+}
+return array;
+}
+static void Main(string[] args)
+{
+Console.WriteLine(&quot;Сортування бульбашкою&quot;);
+Console.Write(&quot;Введіть елементи масиву: &quot;);
+var parts = Console.ReadLine().Split(new[] { &quot; &quot;, &quot;,&quot;, &quot;;&quot;
+}, StringSplitOptions.RemoveEmptyEntries);
+var array = new int[parts.Length];
+for (int i = 0; i &lt; parts.Length; i++)
+{
+array[i] = Convert.ToInt32(parts[i]);
+}
+Console.WriteLine(&quot;Відсортований масив: {0}&quot;,
+string.Join(&quot;, &quot;, BubbleSort(array)));
+Console.ReadLine();
+}
+}

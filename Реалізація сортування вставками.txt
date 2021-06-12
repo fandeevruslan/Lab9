@@ -1,0 +1,43 @@
+using System;
+class Program
+{
+//метод обміну елементів
+static void Swap(ref int e1, ref int e2)
+{
+var temp = e1;
+e1 = e2;
+e2 = temp;
+}
+//сортування вставками
+static int[] InsertionSort(int[] array)
+{
+for (var i = 1; i &lt; array.Length; i++)
+{
+var key = array[i];
+var j = i;
+while ((j &gt; 1) &amp;&amp; (array[j - 1] &gt; key))
+{
+Swap(ref array[j - 1], ref array[j]);
+j--;
+}
+array[j] = key;
+}
+
+return array;
+}
+static void Main(string[] args)
+{
+Console.WriteLine(&quot;Сортування включенням&quot;);
+Console.Write(&quot;Введіть елементи масиву: &quot;);
+var parts = Console.ReadLine().Split(new[] { &quot; &quot;, &quot;,&quot;,
+&quot;;&quot; }, StringSplitOptions.RemoveEmptyEntries);
+var array = new int[parts.Length];
+for (int i = 0; i &lt; parts.Length; i++)
+{
+array[i] = Convert.ToInt32(parts[i]);
+}
+Console.WriteLine(&quot;Впорядкований масив: {0}&quot;,
+string.Join(&quot;, &quot;, InsertionSort(array)));
+Console.ReadLine();
+}
+}
